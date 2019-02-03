@@ -1,6 +1,13 @@
+.gradle
+/build/
 .DS_Store
-.idea/
-README
-biblioteca.iml
-lib/
-out/
+application.properties
+libs/
+logs/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/

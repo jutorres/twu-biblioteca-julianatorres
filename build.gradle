@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+version = '1.2.1'
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+
+}
