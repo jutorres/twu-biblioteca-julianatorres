@@ -17,10 +17,13 @@ public class ExampleTest {
     }
 
     @Test
-    public void test() {
+    public void testIfTheWelcomeMessageIsCorrect() {
 
-        String actual = biblioteca.welcomeMessage();
+        String expected = biblioteca.welcomeMessage();
 
-        assertThat("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!", is(actual));
+        assertThat("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!", is(expected));
     }
+
+
+
 }
