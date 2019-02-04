@@ -18,14 +18,17 @@ public class LibraryAppTest {
     private Library library;
     @Mock
     private PrintStream printStream;
-    private List<String> bookList;
+    private List<Book> bookList;
 
     @Before
     public void setup() {
+        Book book1 = new Book("Dom Casmurro", "Machado de Assis", 1900);
+        Book book2 = new Book("Senhora", "Jose de Alencar", 1900);
+        Book book3 = new Book("Memorias Postumas de Bras Cubas", "Machado de Assis", 1900);
         bookList = new ArrayList<>();
-        bookList.add("Dom Casmurro");
-        bookList.add("Senhora");
-        bookList.add("Memorias Postumas de Bras Cubas");
+        bookList.add(book1);
+        bookList.add(book2);
+        bookList.add(book3);
         library = new Library(bookList, printStream);
     }
 
@@ -38,14 +41,26 @@ public class LibraryAppTest {
 
     }
 
+//    @Test
+//    public void testIfTheBookListIsShowing() {
+//
+//        library.getBookList();
+//
+//        verify(printStream).println("Dom Casmurro");
+//        verify(printStream).println("Senhora");
+//        verify(printStream).println("Memorias Postumas de Bras Cubas");
+
+//    }
+
     @Test
-    public void testIfTheBookListIsShowing() {
+    public void viewAuthorAndPublicationYearOnAllBooks() {
 
         library.getBookList();
 
-        verify(printStream).println("Dom Casmurro");
-        verify(printStream).println("Senhora");
-        verify(printStream).println("Memorias Postumas de Bras Cubas");
+        for (Book book : bookList) {
+            verify(printStream).println(book);
+
+        }
 
     }
 
