@@ -2,37 +2,51 @@ package com.twu.library;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Arrays;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.verify;
 
+@RunWith(MockitoJUnitRunner.class)
 public class LibraryAppTest {
 
     private Library library;
+    @Mock
+    private PrintStream printStream;
+    private List<String> bookList;
 
     @Before
     public void setup() {
-        library = new Library();
+        bookList = new ArrayList<>();
+        bookList.add("Dom Casmurro");
+        bookList.add("Senhora");
+        bookList.add("Memorias Postumas de Bras Cubas");
+        library = new Library(bookList, printStream);
     }
 
     @Test
     public void testIfTheWelcomeMessageIsCorrect() {
 
-        String expected = library.welcomeMessage();
+        library.welcomeMessage();
 
-        assertThat("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!", is(expected));
+        verify(printStream).println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!");
+
     }
 
     @Test
     public void testIfTheBookListIsShowing() {
 
-        List<String> actual = Arrays.asList("Dom Casmurro", "Senhora", "Memorias Postumas de Bras Cubas");
-        List<String> expected = library.getBookList();
+        library.getBookList();
 
-        assertThat(actual, is(expected));
+        verify(printStream).println("Dom Casmurro");
+        verify(printStream).println("Senhora");
+        verify(printStream).println("Memorias Postumas de Bras Cubas");
+
     }
 
 
