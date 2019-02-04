@@ -1,10 +1,10 @@
-package com.twu.biblioteca;
+package com.twu.library;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Biblioteca {
+public class Library {
 
     private List<String> bookList = new ArrayList<>();
 
@@ -16,4 +16,5 @@ public class Biblioteca {
         bookList = Arrays.asList("Dom Casmurro", "Senhora", "Memorias Postumas de Bras Cubas");
         return bookList;
     }
+
 }
