@@ -19,6 +19,7 @@ public class LibraryAppTest {
     @Mock
     private PrintStream printStream;
     private List<Book> bookList;
+    private WelcomeMessage welcomeMessage;
 
     @Before
     public void setup() {
@@ -30,12 +31,13 @@ public class LibraryAppTest {
         bookList.add(book2);
         bookList.add(book3);
         library = new Library(bookList, printStream);
+        welcomeMessage = new WelcomeMessage(printStream);
     }
 
     @Test
     public void testIfTheWelcomeMessageIsCorrect() {
 
-        library.welcomeMessage();
+        welcomeMessage.printWelcomeMessage();
 
         verify(printStream).println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!");
 

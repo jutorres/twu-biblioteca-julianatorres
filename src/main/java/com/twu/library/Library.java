@@ -13,10 +13,6 @@ public class Library {
         this.printStream = printStream;
     }
 
-    public void welcomeMessage() {
-        printStream.println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!");
-    }
-
     public void getBookList() {
 
         for (Book book: bookList) {

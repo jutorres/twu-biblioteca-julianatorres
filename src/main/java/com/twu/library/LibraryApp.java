@@ -15,7 +15,8 @@ public class LibraryApp {
         bookList.add(book2);
         bookList.add(book3);
         Library library = new Library(bookList, System.out);
-        library.welcomeMessage();
+        WelcomeMessage welcomeMessage = new WelcomeMessage(System.out);
+        welcomeMessage.printWelcomeMessage();
         library.getBookList();
 
     }
