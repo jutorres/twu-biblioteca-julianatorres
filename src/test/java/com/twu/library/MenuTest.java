@@ -1,16 +1,11 @@
 package com.twu.library;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.io.StringReader;
-
+import java.io.*;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -18,29 +13,41 @@ public class MenuTest {
 
     private Menu menu;
     @Mock
-    private Library library;
+    private Library mockLibrary;
     @Mock
     private PrintStream mockPrintStream;
 
-    @Before
-    public void setup() {
-        menu = new Menu();
-    }
+
 
     @Test
     public void testIfWhenUserSelectTheFirstMenuOptionTheBookListAppears() throws IOException {
 
-        menu.showMenu(mockPrintStream, new BufferedReader(new StringReader("1")), library);
+        menu = new Menu(System.out, new BufferedReader(new StringReader("1\n0")) , mockLibrary);
 
-        verify(library).getBookList();
+        menu.showMenu();
+
+        verify(mockLibrary).getBookList();
+
     }
 
     @Test
     public void testIfTheMessageInvalidOptinAppearesWhenUserPutUnInvalidMenuNumber() throws IOException {
 
-        menu.showMenu(mockPrintStream, new BufferedReader(new StringReader("9")), library);
+        menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("10\n0")) , mockLibrary);
+
+        menu.showMenu();
 
         verify(mockPrintStream).println("Please, select a valid option!");
+    }
+
+    @Test
+    public void testIfICouldUseLibrarySystemUntilChooseTheOptionQuit() throws IOException {
+
+        menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("0")) , mockLibrary);
+
+        menu.showMenu();
+
+        verify(mockPrintStream).println("Goodbye, You quit the library system");
     }
 
 }
