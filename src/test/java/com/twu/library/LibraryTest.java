@@ -13,14 +13,12 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LibraryAppTest {
+public class LibraryTest {
 
     private Library library;
     @Mock
     private PrintStream mockPrintStream;
     private List<Book> bookList;
-    private WelcomeMessage welcomeMessage;
-    private Menu menu;
 
     @Before
     public void setup() {
@@ -32,17 +30,6 @@ public class LibraryAppTest {
         bookList.add(book2);
         bookList.add(book3);
         library = new Library(bookList, mockPrintStream);
-        welcomeMessage = new WelcomeMessage(mockPrintStream);
-        menu = new Menu();
-    }
-
-    @Test
-    public void testIfTheWelcomeMessageIsCorrect() {
-
-        welcomeMessage.printWelcomeMessage();
-
-        verify(mockPrintStream).println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!");
-
     }
 
     @Test
@@ -55,16 +42,6 @@ public class LibraryAppTest {
 
         }
 
-    }
-
-    @Test
-    public void testIfWhenUserSelectTheFirstMenuOptionTheBookListAppears() throws IOException {
-
-        library = mock(Library.class);
-
-        menu.showMenu(System.out, new BufferedReader(new StringReader("1")), library);
-
-        verify(library).getBookList();
     }
 
 
