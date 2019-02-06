@@ -1,10 +1,9 @@
 package com.twu.library;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class LibraryApp {
 
@@ -20,8 +19,9 @@ public class LibraryApp {
         Library library = new Library(bookList, System.out);
         WelcomeMessage welcomeMessage = new WelcomeMessage(System.out);
         welcomeMessage.printWelcomeMessage();
-        Menu menu = new Menu();
-        menu.showMenu(System.out, new BufferedReader(new InputStreamReader(System.in)), library);
+        Menu menu = new Menu(library);
+        menu.showMenu();
+
 
     }
 }
