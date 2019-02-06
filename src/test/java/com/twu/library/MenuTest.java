@@ -18,7 +18,6 @@ public class MenuTest {
     private PrintStream mockPrintStream;
 
 
-
     @Test
     public void testIfWhenUserSelectTheFirstMenuOptionTheBookListAppears() throws IOException {
 
@@ -41,7 +40,7 @@ public class MenuTest {
     }
 
     @Test
-    public void testIfICouldUseLibrarySystemUntilChooseTheOptionQuit() throws IOException {
+    public void testIfCostumerCouldUseLibrarySystemUntilChooseTheOptionQuit() throws IOException {
 
         menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("0")) , mockLibrary);
 
