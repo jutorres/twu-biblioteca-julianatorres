@@ -6,19 +6,21 @@ import java.io.PrintStream;
 
 public class Menu {
 
-    private PrintStream printStream;
-    private BufferedReader bufferedReader;
-    private Library library;
-
 
     public void showMenu(PrintStream printStream, BufferedReader bufferedReader, Library library) throws IOException {
         printStream.println("Please, select a menu option: " +
                 "\n[1] List of books");
 
         String userOption = bufferedReader.readLine();
+
         switch (userOption) {
+
             case "1":
-                 library.getBookList();
+                library.getBookList();
+                break;
+
+            default:
+                printStream.println("Please, select a valid option!");
         }
 
     }

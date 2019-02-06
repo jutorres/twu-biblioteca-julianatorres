@@ -8,18 +8,19 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.StringReader;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MenuTest {
 
+    private Menu menu;
     @Mock
     private Library library;
     @Mock
-    private Menu menu;
+    private PrintStream mockPrintStream;
 
     @Before
     public void setup() {
@@ -29,10 +30,17 @@ public class MenuTest {
     @Test
     public void testIfWhenUserSelectTheFirstMenuOptionTheBookListAppears() throws IOException {
 
-        library = mock(Library.class);
-
-        menu.showMenu(System.out, new BufferedReader(new StringReader("1")), library);
+        menu.showMenu(mockPrintStream, new BufferedReader(new StringReader("1")), library);
 
         verify(library).getBookList();
     }
+
+    @Test
+    public void testIfTheMessageInvalidOptinAppearesWhenUserPutUnInvalidMenuNumber() throws IOException {
+
+        menu.showMenu(mockPrintStream, new BufferedReader(new StringReader("9")), library);
+
+        verify(mockPrintStream).println("Please, select a valid option!");
+    }
+
 }
