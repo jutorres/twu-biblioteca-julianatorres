@@ -6,20 +6,21 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LibraryAppTest {
 
     private Library library;
     @Mock
-    private PrintStream printStream;
+    private PrintStream mockPrintStream;
     private List<Book> bookList;
     private WelcomeMessage welcomeMessage;
+    private Menu menu;
 
     @Before
     public void setup() {
@@ -30,8 +31,9 @@ public class LibraryAppTest {
         bookList.add(book1);
         bookList.add(book2);
         bookList.add(book3);
-        library = new Library(bookList, printStream);
-        welcomeMessage = new WelcomeMessage(printStream);
+        library = new Library(bookList, mockPrintStream);
+        welcomeMessage = new WelcomeMessage(mockPrintStream);
+        menu = new Menu();
     }
 
     @Test
@@ -39,20 +41,9 @@ public class LibraryAppTest {
 
         welcomeMessage.printWelcomeMessage();
 
-        verify(printStream).println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!");
+        verify(mockPrintStream).println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!");
 
     }
-
-//    @Test
-//    public void testIfTheBookListIsShowing() {
-//
-//        library.getBookList();
-//
-//        verify(printStream).println("Dom Casmurro");
-//        verify(printStream).println("Senhora");
-//        verify(printStream).println("Memorias Postumas de Bras Cubas");
-
-//    }
 
     @Test
     public void viewAuthorAndPublicationYearOnAllBooks() {
@@ -60,10 +51,20 @@ public class LibraryAppTest {
         library.getBookList();
 
         for (Book book : bookList) {
-            verify(printStream).println(book);
+            verify(mockPrintStream).println(book);
 
         }
 
+    }
+
+    @Test
+    public void testIfWhenUserSelectTheFirstMenuOptionTheBookListAppears() throws IOException {
+
+        library = mock(Library.class);
+
+        menu.showMenu(System.out, new BufferedReader(new StringReader("1")), library);
+
+        verify(library).getBookList();
     }
 
 

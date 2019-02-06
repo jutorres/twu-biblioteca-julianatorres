@@ -1,11 +1,14 @@
 package com.twu.library;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryApp {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         List<Book> bookList = new ArrayList<>();
         Book book1 = new Book("Dom Casmurro", "Machado de Assis", 1900);
@@ -17,7 +20,8 @@ public class LibraryApp {
         Library library = new Library(bookList, System.out);
         WelcomeMessage welcomeMessage = new WelcomeMessage(System.out);
         welcomeMessage.printWelcomeMessage();
-        library.getBookList();
+        Menu menu = new Menu();
+        menu.showMenu(System.out, new BufferedReader(new InputStreamReader(System.in)), library);
 
     }
 }
