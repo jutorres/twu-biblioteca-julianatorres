@@ -22,9 +22,9 @@ public class LibraryTest {
 
     @Before
     public void setup() {
-        Book book1 = new Book("Dom Casmurro", "Machado de Assis", 1900);
-        Book book2 = new Book("Senhora", "Jose de Alencar", 1900);
-        Book book3 = new Book("Memorias Postumas de Bras Cubas", "Machado de Assis", 1900);
+        Book book1 = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
+        Book book2 = new Book("Senhora", "Jose de Alencar", 1900, BookStatus.AVAILABLE);
+        Book book3 = new Book("Memorias Postumas de Bras Cubas", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
         bookList = new ArrayList<>();
         bookList.add(book1);
         bookList.add(book2);
@@ -41,6 +41,16 @@ public class LibraryTest {
             verify(mockPrintStream).println(book);
 
         }
+
+    }
+
+    @Test
+    public void testIfOnlyAvailableBooksAppearsInList() {
+
+        library.getBookList();
+
+        verify(mockPrintStream).println(bookList.get(0));
+        verify(mockPrintStream, times(0)).println(bookList.get(2));
 
     }
 

@@ -6,7 +6,11 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.*;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MenuTest {
@@ -16,7 +20,6 @@ public class MenuTest {
     private Library mockLibrary;
     @Mock
     private PrintStream mockPrintStream;
-
 
     @Test
     public void testIfWhenUserSelectTheFirstMenuOptionTheBookListAppears() throws IOException {
@@ -47,6 +50,27 @@ public class MenuTest {
         menu.showMenu();
 
         verify(mockPrintStream).println("Goodbye, You quit the library system");
+    }
+
+    @Test
+    public void testBookCheckoutOperation() throws IOException {
+
+        int index = 1;
+
+        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
+
+        when(mockLibrary.getAnEspecificBookFromListSelectedByCostumer(index)).thenReturn(book);
+
+        menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("2\n1\n0")) , mockLibrary);
+
+        menu.showMenu();
+
+        verify(mockLibrary).getAnEspecificBookFromListSelectedByCostumer(index);
+
+        assertThat(book.getBookStatus(), is(BookStatus.UNAVAILABLE));
+
+        verify(mockPrintStream).println("Book successful checkout!");
+
     }
 
 }

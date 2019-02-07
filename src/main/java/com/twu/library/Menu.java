@@ -25,6 +25,7 @@ public class Menu {
         do {
             printStream.println("Please, select a menu option: " +
                     "\n[1] List of books" +
+                    "\n[2] Checkout book" +
                     "\n[0] Quit");
 
             menuItem = bufferedReader.readLine();
@@ -39,6 +40,11 @@ public class Menu {
                     library.getBookList();
                     break;
 
+                case "2":
+                    bookCheckoutOperation();
+                    printStream.println("Book successful checkout!");
+                    break;
+
                 case "0":
                     printStream.println("Goodbye, You quit the library system");
                     break;
@@ -47,6 +53,18 @@ public class Menu {
                     printStream.println("Please, select a valid option!");
             }
         } while(!menuItem.equals("0"));
+
+    }
+
+    public void bookCheckoutOperation() throws IOException {
+
+        printStream.println("Please, select a book to checkout: ");
+
+        library.getBookList();
+
+        int userOption = Integer.parseInt(bufferedReader.readLine());
+
+        library.getAnEspecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.UNAVAILABLE);
 
     }
 }

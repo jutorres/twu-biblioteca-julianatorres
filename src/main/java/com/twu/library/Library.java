@@ -16,8 +16,14 @@ public class Library {
     public void getBookList() {
 
         for (Book book: bookList) {
-            printStream.println(book);
+            if (book.getBookStatus() == BookStatus.AVAILABLE) {
+                printStream.println(book);
+            }
         }
+    }
+
+    public Book getAnEspecificBookFromListSelectedByCostumer(int index) {
+        return bookList.get(index - 1);
     }
 
 }
