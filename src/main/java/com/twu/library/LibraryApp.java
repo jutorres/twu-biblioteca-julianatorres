@@ -12,7 +12,7 @@ public class LibraryApp {
         List<Book> bookList = new ArrayList<>();
         Book book1 = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
         Book book2 = new Book("Senhora", "Jose de Alencar", 1900, BookStatus.AVAILABLE);
-        Book book3 = new Book("Memorias Postumas de Bras Cubas", "Machado de Assis", 1900, BookStatus.AVAILABLE);
+        Book book3 = new Book("Memorias Postumas de Bras Cubas", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
         bookList.add(book1);
         bookList.add(book2);
         bookList.add(book3);

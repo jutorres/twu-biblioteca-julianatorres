@@ -27,7 +27,7 @@ public class WelcomeMessageTest {
 
         welcomeMessage.printWelcomeMessage();
 
-        verify(mockPrintStream).println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!");
+        verify(mockPrintStream).println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!\n");
 
     }
 }

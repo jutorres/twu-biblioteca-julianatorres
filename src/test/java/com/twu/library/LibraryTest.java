@@ -35,7 +35,7 @@ public class LibraryTest {
 //    @Test
 //    public void viewAuthorAndPublicationYearOnAllBooks() {
 //
-//        library.getBookList();
+//        library.getAvailableBookList();
 //
 //        for (Book book : bookList) {
 //            verify(mockPrintStream).println(book);
@@ -47,7 +47,7 @@ public class LibraryTest {
     @Test
     public void testIfOnlyAvailableBooksAppearsInList() {
 
-        library.getBookList();
+        library.getAvailableBookList();
 
         verify(mockPrintStream).println(bookList.get(0));
         verify(mockPrintStream, times(0)).println(bookList.get(2));

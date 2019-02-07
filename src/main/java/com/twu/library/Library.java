@@ -13,7 +13,7 @@ public class Library {
         this.printStream = printStream;
     }
 
-    public void getBookList() {
+    public void getAvailableBookList() {
 
         for (Book book: bookList) {
             if (book.getBookStatus() == BookStatus.AVAILABLE) {
@@ -21,6 +21,16 @@ public class Library {
             }
         }
     }
+
+    public void getUnAvailableBookList() {
+
+        for (Book book: bookList) {
+            if (book.getBookStatus() == BookStatus.UNAVAILABLE) {
+                printStream.println(book);
+            }
+        }
+    }
+
 
     public Book getAnSpecificBookFromListSelectedByCostumer(int index) {
         return bookList.get(index - 1);

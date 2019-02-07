@@ -11,6 +11,6 @@ public class WelcomeMessage {
     }
 
     public void printWelcomeMessage() {
-        printStream.println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!");
+        printStream.println("Welcome to Biblioteca! Your one-stop-shop for great book titles in Bangalore!\n");
     }
 }

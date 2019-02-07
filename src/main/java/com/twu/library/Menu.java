@@ -26,7 +26,8 @@ public class Menu {
             printStream.println("Please, select a menu option: " +
                     "\n[1] List of books" +
                     "\n[2] Checkout book" +
-                    "\n[0] Quit");
+                    "\n[3] Return a book" +
+                    "\n[9] Quit");
 
             menuItem = bufferedReader.readLine();
 
@@ -37,22 +38,25 @@ public class Menu {
             switch (menuItem) {
 
                 case "1":
-                    library.getBookList();
+                    library.getAvailableBookList();
                     break;
 
                 case "2":
                     bookCheckoutOperation();
-                    printStream.println("Thank you! Enjoy the book!");
                     break;
 
-                case "0":
+                case "3":
+                    bookReturnOperation();
+                    break;
+
+                case "9":
                     printStream.println("Goodbye, You quit the library system");
                     break;
 
                 default:
-                    printStream.println("Please, select a valid option!");
+                    printStream.println("Please, select a valid option!\n");
             }
-        } while(!menuItem.equals("0"));
+        } while(!menuItem.equals("9"));
 
     }
 
@@ -60,20 +64,32 @@ public class Menu {
 
         printStream.println("Please, select a book to checkout: ");
 
-        library.getBookList();
+        library.getAvailableBookList();
 
         int userOption = Integer.parseInt(bufferedReader.readLine());
 
         if(library.getAnSpecificBookFromListSelectedByCostumer(userOption).getBookStatus() == BookStatus.UNAVAILABLE) {
 
-            printStream.println("Sorry, that book is not available!");
+            printStream.println("Sorry, that book is not available!\n");
 
         } else {
 
             library.getAnSpecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.UNAVAILABLE);
 
+            printStream.println("Thank you! Enjoy the book!\n");
+
         }
 
+    }
 
+    private void bookReturnOperation() throws IOException {
+
+        printStream.println("Please, select a book to return: ");
+
+        library.getUnAvailableBookList();
+
+        int userOption = Integer.parseInt(bufferedReader.readLine());
+
+        library.getAnSpecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.AVAILABLE);
     }
 }
