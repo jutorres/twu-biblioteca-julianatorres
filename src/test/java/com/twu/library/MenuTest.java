@@ -96,7 +96,7 @@ public class MenuTest {
 
         int index = 1;
 
-        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
+        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
 
         when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
 
@@ -108,6 +108,7 @@ public class MenuTest {
 
         assertThat(book.getBookStatus(), is(BookStatus.AVAILABLE));
 
+        verify(mockPrintStream).println("Thank you for returning the book!\n");
     }
 
 }

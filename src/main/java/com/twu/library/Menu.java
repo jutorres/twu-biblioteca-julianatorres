@@ -47,6 +47,7 @@ public class Menu {
 
                 case "3":
                     bookReturnOperation();
+                    printStream.println("Thank you for returning the book!\n");
                     break;
 
                 case "9":
@@ -91,5 +92,6 @@ public class Menu {
         int userOption = Integer.parseInt(bufferedReader.readLine());
 
         library.getAnSpecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.AVAILABLE);
+
     }
 }
