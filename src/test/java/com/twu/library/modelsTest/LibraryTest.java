@@ -1,5 +1,8 @@
-package com.twu.library;
+package com.twu.library.modelsTest;
 
+import com.twu.library.models.Book;
+import com.twu.library.models.Library;
+import com.twu.library.enums.BookStatus;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

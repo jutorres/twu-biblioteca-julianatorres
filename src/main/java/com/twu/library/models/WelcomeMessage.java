@@ -1,4 +1,4 @@
-package com.twu.library;
+package com.twu.library.models;
 
 import java.io.PrintStream;
 

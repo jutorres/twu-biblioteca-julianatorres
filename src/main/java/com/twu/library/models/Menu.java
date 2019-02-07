@@ -1,4 +1,6 @@
-package com.twu.library;
+package com.twu.library.models;
+
+import com.twu.library.enums.BookStatus;
 
 import java.io.*;
 

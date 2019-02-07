@@ -1,5 +1,6 @@
-package com.twu.library;
+package com.twu.library.modelsTest;
 
+import com.twu.library.models.WelcomeMessage;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.twu.library;
+package com.twu.library.enums;
 
 public enum BookStatus {
 

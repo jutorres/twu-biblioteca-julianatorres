@@ -1,4 +1,10 @@
-package com.twu.library;
+package com.twu.library.main;
+
+import com.twu.library.models.Book;
+import com.twu.library.models.Library;
+import com.twu.library.models.Menu;
+import com.twu.library.models.WelcomeMessage;
+import com.twu.library.enums.BookStatus;
 
 import java.io.IOException;
 import java.util.ArrayList;
