@@ -9,8 +9,7 @@ import java.io.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MenuTest {
@@ -65,11 +64,30 @@ public class MenuTest {
 
         menu.showMenu();
 
-        verify(mockLibrary).getAnSpecificBookFromListSelectedByCostumer(index);
+        verify(mockLibrary, times(2)).getAnSpecificBookFromListSelectedByCostumer(index);
 
         assertThat(book.getBookStatus(), is(BookStatus.UNAVAILABLE));
 
         verify(mockPrintStream).println("Thank you! Enjoy the book!");
+
+    }
+
+    @Test
+    public void testBookCheckoutOperationWithAnUnavailableBook() throws IOException {
+
+        int index = 1;
+
+        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
+
+        when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
+
+        menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("2\n1\n0")) , mockLibrary);
+
+        menu.showMenu();
+
+        verify(mockLibrary).getAnSpecificBookFromListSelectedByCostumer(index);
+
+        verify(mockPrintStream).println("Sorry, that book is not available!");
 
     }
 

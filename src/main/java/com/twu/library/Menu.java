@@ -64,7 +64,16 @@ public class Menu {
 
         int userOption = Integer.parseInt(bufferedReader.readLine());
 
-        library.getAnSpecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.UNAVAILABLE);
+        if(library.getAnSpecificBookFromListSelectedByCostumer(userOption).getBookStatus() == BookStatus.UNAVAILABLE) {
+
+            printStream.println("Sorry, that book is not available!");
+
+        } else {
+
+            library.getAnSpecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.UNAVAILABLE);
+
+        }
+
 
     }
 }
