@@ -96,6 +96,26 @@ public class MenuTest {
 
         int index = 1;
 
+        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
+
+        when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
+
+        menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("3\n1\n9")) , mockLibrary);
+
+        menu.showMenu();
+
+        verify(mockLibrary, times(2)).getAnSpecificBookFromListSelectedByCostumer(index);
+
+        assertThat(book.getBookStatus(), is(BookStatus.AVAILABLE));
+
+        verify(mockPrintStream).println("Thank you for returning the book!\n");
+    }
+
+    @Test
+    public void testBookReturnOperationWithAnAvailableBook() throws IOException {
+
+        int index = 1;
+
         Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
 
         when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
@@ -106,9 +126,8 @@ public class MenuTest {
 
         verify(mockLibrary).getAnSpecificBookFromListSelectedByCostumer(index);
 
-        assertThat(book.getBookStatus(), is(BookStatus.AVAILABLE));
+        verify(mockPrintStream).println("That is not a valid book to return!\n");
 
-        verify(mockPrintStream).println("Thank you for returning the book!\n");
     }
 
 }
