@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.*;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,18 +22,20 @@ public class LibraryTest {
 
     @Before
     public void setup() {
-        Book book1 = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
-        Book book2 = new Book("Senhora", "Jose de Alencar", 1900, BookStatus.AVAILABLE);
-        Book book3 = new Book("Memorias Postumas de Bras Cubas", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
-        bookList = new ArrayList<>();
-        bookList.add(book1);
-        bookList.add(book2);
-        bookList.add(book3);
         library = new Library(bookList, mockPrintStream);
     }
 
     @Test
     public void testIfOnlyAvailableBooksAppearsInList() {
+        Book book1 = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
+        Book book2 = new Book("Senhora", "Jose de Alencar", 1900, BookStatus.AVAILABLE);
+        Book book3 = new Book("Memorias Postumas de Bras Cubas", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
+
+        bookList = new ArrayList<>();
+
+        bookList.add(book1);
+        bookList.add(book2);
+        bookList.add(book3);
 
         library.getAvailableBookList();
 
