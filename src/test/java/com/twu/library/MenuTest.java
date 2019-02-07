@@ -59,17 +59,17 @@ public class MenuTest {
 
         Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
 
-        when(mockLibrary.getAnEspecificBookFromListSelectedByCostumer(index)).thenReturn(book);
+        when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
 
         menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("2\n1\n0")) , mockLibrary);
 
         menu.showMenu();
 
-        verify(mockLibrary).getAnEspecificBookFromListSelectedByCostumer(index);
+        verify(mockLibrary).getAnSpecificBookFromListSelectedByCostumer(index);
 
         assertThat(book.getBookStatus(), is(BookStatus.UNAVAILABLE));
 
-        verify(mockPrintStream).println("Book successful checkout!");
+        verify(mockPrintStream).println("Thank you! Enjoy the book!");
 
     }
 

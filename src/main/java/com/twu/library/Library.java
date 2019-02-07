@@ -22,7 +22,7 @@ public class Library {
         }
     }
 
-    public Book getAnEspecificBookFromListSelectedByCostumer(int index) {
+    public Book getAnSpecificBookFromListSelectedByCostumer(int index) {
         return bookList.get(index - 1);
     }
 

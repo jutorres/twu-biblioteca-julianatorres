@@ -42,7 +42,7 @@ public class Menu {
 
                 case "2":
                     bookCheckoutOperation();
-                    printStream.println("Book successful checkout!");
+                    printStream.println("Thank you! Enjoy the book!");
                     break;
 
                 case "0":
@@ -64,7 +64,7 @@ public class Menu {
 
         int userOption = Integer.parseInt(bufferedReader.readLine());
 
-        library.getAnEspecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.UNAVAILABLE);
+        library.getAnSpecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.UNAVAILABLE);
 
     }
 }
