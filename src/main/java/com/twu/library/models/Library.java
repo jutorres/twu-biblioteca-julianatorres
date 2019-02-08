@@ -3,6 +3,7 @@ package com.twu.library.models;
 import com.twu.library.enums.BookStatus;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
@@ -15,24 +16,25 @@ public class Library {
         this.printStream = printStream;
     }
 
-    public void getAvailableBookList() {
+    public List<Book> getBookList(BookStatus bookStatus) {
+
+        List<Book> filteredBookList = new ArrayList<>();
 
         for (Book book: bookList) {
-            if (book.getBookStatus() == BookStatus.AVAILABLE) {
-                printStream.println(book);
+            if (book.getBookStatus() == bookStatus) {
+                filteredBookList.add(book);
             }
         }
+        return filteredBookList;
     }
 
-    public void getUnAvailableBookList() {
+    public void printFilteredBookList(List<Book> bookListSelected) {
 
-        for (Book book: bookList) {
-            if (book.getBookStatus() == BookStatus.UNAVAILABLE) {
-                printStream.println(book);
-            }
+        for(Book book : bookListSelected) {
+            printStream.println(book);
         }
-    }
 
+    }
 
     public Book getAnSpecificBookFromListSelectedByCostumer(int index) {
         return bookList.get(index - 1);

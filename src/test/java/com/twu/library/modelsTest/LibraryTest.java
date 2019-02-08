@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -42,7 +43,16 @@ public class LibraryTest {
     @Test
     public void testIfOnlyAvailableBooksAppearsInList() {
 
-        library.getAvailableBookList();
+        int listSize = library.getBookList(BookStatus.AVAILABLE).size();
+
+        assertEquals(listSize, 2);
+
+    }
+
+    @Test
+    public void testIfIsPrintingTheListBookSelected() {
+
+        library.printFilteredBookList(library.getBookList(BookStatus.AVAILABLE));
 
         verify(mockPrintStream).println(bookList.get(0));
         verify(mockPrintStream, times(0)).println(bookList.get(2));

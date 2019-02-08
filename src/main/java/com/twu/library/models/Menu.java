@@ -40,7 +40,7 @@ public class Menu {
             switch (menuItem) {
 
                 case "1":
-                    library.getAvailableBookList();
+                    library.printFilteredBookList(library.getBookList(BookStatus.AVAILABLE));
                     break;
 
                 case "2":
@@ -66,7 +66,7 @@ public class Menu {
 
         printStream.println("Please, select a book to checkout: ");
 
-        library.getAvailableBookList();
+        library.printFilteredBookList(library.getBookList(BookStatus.AVAILABLE));
 
         int userOption = Integer.parseInt(bufferedReader.readLine());
 
@@ -88,7 +88,7 @@ public class Menu {
 
         printStream.println("Please, select a book to return: ");
 
-        library.getUnAvailableBookList();
+        library.printFilteredBookList(library.getBookList(BookStatus.UNAVAILABLE));
 
         int userOption = Integer.parseInt(bufferedReader.readLine());
 

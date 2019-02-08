@@ -31,7 +31,7 @@ public class MenuTest {
 
         menu.showMenu();
 
-        verify(mockLibrary).getAvailableBookList();
+        verify(mockLibrary).getBookList(BookStatus.AVAILABLE);
 
     }
 
