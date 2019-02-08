@@ -50,12 +50,23 @@ public class LibraryTest {
     }
 
     @Test
-    public void testIfIsPrintingTheListBookSelected() {
+    public void testIfIsPrintingTheAvailableListBook() {
 
         library.printFilteredBookList(library.getBookList(BookStatus.AVAILABLE));
 
         verify(mockPrintStream).println(bookList.get(0));
         verify(mockPrintStream, times(0)).println(bookList.get(2));
+
+    }
+
+    @Test
+    public void testIfIsPrintingTheUnavailableListBook() {
+
+        library.printFilteredBookList(library.getBookList(BookStatus.UNAVAILABLE));
+
+        verify(mockPrintStream).println(bookList.get(2));
+        verify(mockPrintStream, times(0)).println(bookList.get(0));
+        verify(mockPrintStream, times(0)).println(bookList.get(1));
 
     }
 
