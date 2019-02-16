@@ -1,6 +1,6 @@
 package com.twu.library.models;
 
-import com.twu.library.enums.BookStatus;
+import com.twu.library.enums.ProductStatus;
 
 import java.io.*;
 
@@ -29,6 +29,7 @@ public class Menu {
                     "\n[1] List of books" +
                     "\n[2] Checkout book" +
                     "\n[3] Return a book" +
+                    "\n[4] List of movies" +
                     "\n[9] Quit");
 
             menuItem = bufferedReader.readLine();
@@ -40,7 +41,7 @@ public class Menu {
             switch (menuItem) {
 
                 case "1":
-                    library.printFilteredBookList(library.getBookList(BookStatus.AVAILABLE));
+                    library.printFilteredBookList(library.getBookList(ProductStatus.AVAILABLE));
                     break;
 
                 case "2":
@@ -49,6 +50,10 @@ public class Menu {
 
                 case "3":
                     bookReturnOperation();
+                    break;
+
+                case "4":
+                    library.printFilteredMovieList(library.getMovieList(ProductStatus.AVAILABLE));
                     break;
 
                 case "9":
@@ -66,17 +71,17 @@ public class Menu {
 
         printStream.println("Please, select a book to checkout: ");
 
-        library.printFilteredBookList(library.getBookList(BookStatus.AVAILABLE));
+        library.printFilteredBookList(library.getBookList(ProductStatus.AVAILABLE));
 
         int userOption = Integer.parseInt(bufferedReader.readLine());
 
-        if(library.getAnSpecificBookFromListSelectedByCostumer(userOption).getBookStatus() == BookStatus.UNAVAILABLE) {
+        if(library.getAnSpecificBookFromListSelectedByCostumer(userOption).getProductStatus() == ProductStatus.UNAVAILABLE) {
 
             printStream.println("Sorry, that book is not available!\n");
 
         } else {
 
-            library.getAnSpecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.UNAVAILABLE);
+            library.getAnSpecificBookFromListSelectedByCostumer(userOption).setProductStatus(ProductStatus.UNAVAILABLE);
 
             printStream.println("Thank you! Enjoy the book!\n");
 
@@ -88,17 +93,17 @@ public class Menu {
 
         printStream.println("Please, select a book to return: ");
 
-        library.printFilteredBookList(library.getBookList(BookStatus.UNAVAILABLE));
+        library.printFilteredBookList(library.getBookList(ProductStatus.UNAVAILABLE));
 
         int userOption = Integer.parseInt(bufferedReader.readLine());
 
-        if(library.getAnSpecificBookFromListSelectedByCostumer(userOption).getBookStatus() == BookStatus.AVAILABLE) {
+        if(library.getAnSpecificBookFromListSelectedByCostumer(userOption).getProductStatus() == ProductStatus.AVAILABLE) {
 
             printStream.println("That is not a valid book to return!\n");
 
         } else {
 
-            library.getAnSpecificBookFromListSelectedByCostumer(userOption).setBookStatus(BookStatus.AVAILABLE);
+            library.getAnSpecificBookFromListSelectedByCostumer(userOption).setProductStatus(ProductStatus.AVAILABLE);
 
             printStream.println("Thank you for returning the book!\n");
 

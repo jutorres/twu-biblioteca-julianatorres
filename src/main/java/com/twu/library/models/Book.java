@@ -1,32 +1,22 @@
 package com.twu.library.models;
 
-import com.twu.library.enums.BookStatus;
 
-public class Book {
+import com.twu.library.enums.ProductStatus;
 
-    private String title;
+public class Book extends Product{
+
     private String author;
-    private int year;
-    private BookStatus bookStatus;
 
-    public Book(String title, String author, int year, BookStatus bookStatus) {
-        this.title = title;
+    public Book(String title, String author, int year, ProductStatus productStatus) {
+        super.title = title;
         this.author = author;
-        this.year = year;
-        this.bookStatus = bookStatus;
-    }
-
-    public BookStatus getBookStatus() {
-        return bookStatus;
-    }
-
-    public void setBookStatus(BookStatus bookStatus) {
-        this.bookStatus = bookStatus;
+        super.year = year;
+        super.productStatus = productStatus;
     }
 
     @Override
     public String toString() {
-        return title + ", " + author + ", " + year;
+        return title + ", " + author + ", " + year ;
     }
 
 }

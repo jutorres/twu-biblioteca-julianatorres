@@ -1,6 +1,6 @@
 package com.twu.library.enums;
 
-public enum BookStatus {
+public enum ProductStatus {
 
     AVAILABLE,
     UNAVAILABLE

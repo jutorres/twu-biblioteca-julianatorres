@@ -3,7 +3,7 @@ package com.twu.library.modelsTest;
 import com.twu.library.models.Book;
 import com.twu.library.models.Library;
 import com.twu.library.models.Menu;
-import com.twu.library.enums.BookStatus;
+import com.twu.library.enums.ProductStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -31,7 +31,7 @@ public class MenuTest {
 
         menu.showMenu();
 
-        verify(mockLibrary).getBookList(BookStatus.AVAILABLE);
+        verify(mockLibrary).getBookList(ProductStatus.AVAILABLE);
 
     }
 
@@ -60,7 +60,7 @@ public class MenuTest {
 
         int index = 1;
 
-        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
+        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, ProductStatus.AVAILABLE);
 
         when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
 
@@ -70,7 +70,7 @@ public class MenuTest {
 
         verify(mockLibrary, times(2)).getAnSpecificBookFromListSelectedByCostumer(index);
 
-        assertThat(book.getBookStatus(), is(BookStatus.UNAVAILABLE));
+        assertThat(book.getProductStatus(), is(ProductStatus.UNAVAILABLE));
 
         verify(mockPrintStream).println("Thank you! Enjoy the book!\n");
 
@@ -81,7 +81,7 @@ public class MenuTest {
 
         int index = 1;
 
-        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
+        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, ProductStatus.UNAVAILABLE);
 
         when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
 
@@ -100,7 +100,7 @@ public class MenuTest {
 
         int index = 1;
 
-        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.UNAVAILABLE);
+        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, ProductStatus.UNAVAILABLE);
 
         when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
 
@@ -110,7 +110,7 @@ public class MenuTest {
 
         verify(mockLibrary, times(2)).getAnSpecificBookFromListSelectedByCostumer(index);
 
-        assertThat(book.getBookStatus(), is(BookStatus.AVAILABLE));
+        assertThat(book.getProductStatus(), is(ProductStatus.AVAILABLE));
 
         verify(mockPrintStream).println("Thank you for returning the book!\n");
     }
@@ -120,7 +120,7 @@ public class MenuTest {
 
         int index = 1;
 
-        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, BookStatus.AVAILABLE);
+        Book book = new Book("Dom Casmurro", "Machado de Assis", 1900, ProductStatus.AVAILABLE);
 
         when(mockLibrary.getAnSpecificBookFromListSelectedByCostumer(index)).thenReturn(book);
 
