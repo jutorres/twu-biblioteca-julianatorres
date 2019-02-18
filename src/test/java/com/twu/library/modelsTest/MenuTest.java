@@ -1,8 +1,6 @@
 package com.twu.library.modelsTest;
 
-import com.twu.library.models.Book;
-import com.twu.library.models.Library;
-import com.twu.library.models.Menu;
+import com.twu.library.models.*;
 import com.twu.library.enums.ProductStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -92,6 +90,46 @@ public class MenuTest {
         verify(mockLibrary).getAnSpecificBookFromListSelectedByCostumer(index);
 
         verify(mockPrintStream).println("Sorry, that book is not available!\n");
+
+    }
+
+    @Test
+    public void testMovieCheckoutOperation() throws IOException {
+
+        int index = 1;
+
+        Movie movie = new Movie("Schindler's List", 1993, "Steven Spielberg", "10", ProductStatus.AVAILABLE);
+
+        when(mockLibrary.getAnSpecificMovieFromListSelectedByCostumer(index)).thenReturn(movie);
+
+        menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("5\n1\n9")) , mockLibrary);
+
+        menu.showMenu();
+
+        verify(mockLibrary, times(2)).getAnSpecificMovieFromListSelectedByCostumer(index);
+
+        assertThat(movie.getProductStatus(), is(ProductStatus.UNAVAILABLE));
+
+        verify(mockPrintStream).println("Thank you! Enjoy the movie!\n");
+
+    }
+
+    @Test
+    public void testMovieCheckoutOperationWithAnUnavailableBook() throws IOException {
+
+        int index = 1;
+
+        Movie movie = new Movie("Unfaithful", 2002, "Adrian Lyne", "10", ProductStatus.UNAVAILABLE);
+
+        when(mockLibrary.getAnSpecificMovieFromListSelectedByCostumer(index)).thenReturn(movie);
+
+        menu = new Menu(mockPrintStream, new BufferedReader(new StringReader("5\n1\n9")) , mockLibrary);
+
+        menu.showMenu();
+
+        verify(mockLibrary).getAnSpecificMovieFromListSelectedByCostumer(index);
+
+        verify(mockPrintStream).println("Sorry, that movie is not available!\n");
 
     }
 

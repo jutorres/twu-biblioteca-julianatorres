@@ -30,6 +30,7 @@ public class Menu {
                     "\n[2] Checkout book" +
                     "\n[3] Return a book" +
                     "\n[4] List of movies" +
+                    "\n[5] Checkout movie" +
                     "\n[9] Quit");
 
             menuItem = bufferedReader.readLine();
@@ -54,6 +55,10 @@ public class Menu {
 
                 case "4":
                     library.printFilteredMovieList(library.getMovieList(ProductStatus.AVAILABLE));
+                    break;
+
+                case "5":
+                    movieCheckoutOperation();
                     break;
 
                 case "9":
@@ -84,6 +89,28 @@ public class Menu {
             library.getAnSpecificBookFromListSelectedByCostumer(userOption).setProductStatus(ProductStatus.UNAVAILABLE);
 
             printStream.println("Thank you! Enjoy the book!\n");
+
+        }
+
+    }
+
+    public void movieCheckoutOperation() throws IOException {
+
+        printStream.println("Please, select a movie to checkout: ");
+
+        library.printFilteredMovieList(library.getMovieList(ProductStatus.AVAILABLE));
+
+        int userOption = Integer.parseInt(bufferedReader.readLine());
+
+        if(library.getAnSpecificMovieFromListSelectedByCostumer(userOption).getProductStatus() == ProductStatus.UNAVAILABLE) {
+
+            printStream.println("Sorry, that movie is not available!\n");
+
+        } else {
+
+            library.getAnSpecificMovieFromListSelectedByCostumer(userOption).setProductStatus(ProductStatus.UNAVAILABLE);
+
+            printStream.println("Thank you! Enjoy the movie!\n");
 
         }
 
